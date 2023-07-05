@@ -6,6 +6,7 @@ import '../services/fakestore_api.dart';
 class ProductController extends GetxController {
   var productList = <Product>[].obs;
   var isLoading = true.obs;
+  var isError = false.obs;
 
   @override
   void onInit() {
@@ -19,8 +20,12 @@ class ProductController extends GetxController {
       var products = await FakeStoreAPI.fetchProducts();
       if (products != null) {
         productList.value = products;
+        isError(false);
+      } else {
+        isError(true);
       }
-    } finally {
+    } 
+    finally {
       isLoading(false);
     }
   }
