@@ -28,14 +28,20 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => _cartController.clear(), 
+              icon: Icon(Icons.delete_outline_outlined)
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Obx(() {
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2/3,
+                crossAxisCount: 1,
+                childAspectRatio: 1.9/1,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
               ), 

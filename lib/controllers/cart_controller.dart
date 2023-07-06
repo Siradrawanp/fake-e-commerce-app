@@ -19,7 +19,7 @@ class CartController extends GetxController {
         (existingCartItem) => CartModel(
           id: DateTime.now().toString(),
           title: existingCartItem.title,
-          quantity: existingCartItem.quantity,
+          quantity: existingCartItem.quantity! + 1,
           price: existingCartItem.price,
           image: existingCartItem.image,
           category: existingCartItem.category,
@@ -44,23 +44,34 @@ class CartController extends GetxController {
     cartItems.remove(id);
   }
 
-  void removeOneItem(String id) {
-    if (cartItems.containsKey(id)) {
-      return;
-    }
+  void decreaseQuantity(String id) {
     if (cartItems[id]!.quantity! > 1) {
       cartItems.update(
-        id, 
-        (existingCartItem) => CartModel(
+        id, (existingCartItem) => CartModel(
           id: DateTime.now().toString(),
           title: existingCartItem.title,
-          quantity: existingCartItem.quantity,
+          quantity: existingCartItem.quantity! - 1,
           price: existingCartItem.price,
           image: existingCartItem.image,
-          category: existingCartItem.category, 
+          category: existingCartItem.category,
         )
       );
+    } else {
+      removeItems(id);
     }
+  }
+
+  void increaseQuantity(String id) {
+    cartItems.update(
+      id, (existingCartItem) => CartModel(
+        id: DateTime.now().toString(),
+        title: existingCartItem.title,
+        quantity: existingCartItem.quantity! + 1,
+        price: existingCartItem.price,
+        image: existingCartItem.image,
+        category: existingCartItem.category,
+      )
+    );    
   }
 
   void clear() {

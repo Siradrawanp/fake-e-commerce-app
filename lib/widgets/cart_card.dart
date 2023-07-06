@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+
+import '../controllers/cart_controller.dart';
 
 class CartCard extends StatelessWidget {
   final String? id;
@@ -25,6 +26,7 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final CartController _cartController = Get.put(CartController());
     final totalPrice = (price! * quantity!);    
     return Card(
       color: Colors.white,
@@ -33,7 +35,7 @@ class CartCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -49,34 +51,105 @@ class CartCard extends StatelessWidget {
             )
           ),
           const SizedBox(height: 4.0,),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    title!,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    category!,
-                    style: const TextStyle(
-                      fontSize: 12.0,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      title!,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
-                const SizedBox(height: 4.0,),
-              ]
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      category!,
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4.0,),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '\$ ${price}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8.0,),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Quantity',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: (){
+                          _cartController.decreaseQuantity(productId!);
+                        }, 
+                        icon: Icon(Icons.remove_circle_outline_outlined),
+                        color: Colors.orange,
+                      ),
+                      Text(
+                        quantity.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: (){
+                          _cartController.increaseQuantity(productId!);
+                        }, 
+                        icon: Icon(Icons.add_circle_outline_outlined),
+                        color: Colors.orange,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total Price :',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        totalPrice.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange
+                        ),
+                      ),
+                    ],
+                  ),
+                ]
+              ),
             ),
           ),
         ],
