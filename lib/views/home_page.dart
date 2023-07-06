@@ -1,8 +1,9 @@
-import 'package:e_comrce_app/controllers/product_controller.dart';
-import 'package:e_comrce_app/views/cart_page.dart';
-import 'package:e_comrce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../controllers/product_controller.dart';
+import '../widgets/product_card.dart';
+import 'cart_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -20,6 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.orangeAccent,
             elevation: 3,
             title: const Text(
               'Le Store',

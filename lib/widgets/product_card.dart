@@ -1,8 +1,8 @@
-import 'package:e_comrce_app/controllers/cart_controller.dart';
-import 'package:e_comrce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
+import '../controllers/cart_controller.dart';
+import '../model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -73,7 +73,7 @@ class ProductCard extends StatelessWidget {
             ),
             const SizedBox(height: 4.0,),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Align(
@@ -100,7 +100,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4.0,),
                   Padding(
-                    padding: EdgeInsets.only(left: 2, right: 2 ),
+                    padding: const EdgeInsets.symmetric(horizontal: 2.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -122,7 +122,7 @@ class ProductCard extends StatelessWidget {
                                 product.category.name,
                               );
                             }, 
-                            icon: Icon(Icons.add_shopping_cart_rounded),
+                            icon: const Icon(Icons.add_shopping_cart_rounded),
                             color: Colors.orange,
                           ),
                         )

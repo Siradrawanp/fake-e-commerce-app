@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class CartModel {
   String? id;
   String? title;
@@ -12,5 +13,14 @@ class CartModel {
     this.price,
     this.category,
     this.image,
+  });
+}
+
+class TotalSpending {
+  String id;
+  double totPrice;
+  TotalSpending({
+    required this.id,
+    required this.totPrice,
   });
 }

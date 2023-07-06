@@ -1,12 +1,10 @@
-import 'package:e_comrce_app/model/cart_model.dart';
 import 'package:get/get.dart';
+
+import '../model/cart_model.dart';
 
 class CartController extends GetxController {
   var cartItems = <String, CartModel>{}.obs;
-
-  // Map<String, CartModel> get cartItems {
-  //   return {..._cartItems};
-  // }
+  var totalPriceList = <TotalSpending>[].obs;
 
   int get itemCount {
     return cartItems.length;
