@@ -1,4 +1,5 @@
 import 'package:e_comrce_app/controllers/product_controller.dart';
+import 'package:e_comrce_app/views/cart_page.dart';
 import 'package:e_comrce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,9 +21,21 @@ class _MyHomePageState extends State<MyHomePage> {
         return Scaffold(
           appBar: AppBar(
             elevation: 3,
+            title: const Text(
+              'Le Store',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            centerTitle: true,
             actions: [
               IconButton(
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartPage()),
+                  );
+                }, 
                 icon: const Icon(Icons.shopping_cart)
               )
             ],

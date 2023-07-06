@@ -1,6 +1,8 @@
+import 'package:e_comrce_app/controllers/cart_controller.dart';
 import 'package:e_comrce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -11,6 +13,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartController _cartController = Get.put(CartController());
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: (){},
@@ -108,6 +111,21 @@ class ProductCard extends StatelessWidget {
                             color: Colors.orange,
                           ),
                         ),
+                        GestureDetector(
+                          child: IconButton(
+                            onPressed: () {
+                              _cartController.addItems(
+                                product.id.toString(), 
+                                product.title, 
+                                product.price, 
+                                product.image, 
+                                product.category.name,
+                              );
+                            }, 
+                            icon: Icon(Icons.add_shopping_cart_rounded),
+                            color: Colors.orange,
+                          ),
+                        )
                       ],
                     ),
                   ),
